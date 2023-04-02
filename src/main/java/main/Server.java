@@ -6,9 +6,16 @@ import java.net.Socket;
 
 public class Server {
 
-    public static void main(String[] args) throws IOException {
-        ServerSocket serverSocket = new ServerSocket(8080);
+    private static final String url = "jdbc:mysql://localhost:3306/main";
+    private static final String user = "root";
+    private static final String DBpassword = "root";
 
+    public static void main(String[] args) throws IOException {
+
+        BD bd = new BD();
+        bd.addUser("Daniil", "1234");
+        System.out.println(bd.getUserByLogin("Daniil", "1234"));
+        ServerSocket serverSocket = new ServerSocket(8080);
         while (true){
             try (
                     Socket socket = serverSocket.accept();
